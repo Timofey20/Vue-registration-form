@@ -1,77 +1,68 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld v-for="(todo, index) in todos" :key="index" :todo="todo" />
+  <div class="container">
+    <form novalidate>
+      <transition name="slide-fade">
+        <div v-show="step === 1" class="step">
+          <Name v-on:nextStep="nextStep" />
+        </div>
+      </transition>
 
-    <div v-on:click="showText">{{ active }}</div>
-    <input v-if="text" v-model="active" />
-    <div v-else>{{ textReverse }}</div>
-    <div v-bind:class="bind">
-      {{ text ? "bind" : "feter" }}
-    </div>
+      <transition name="slide-fade">
+        <div v-show="step === 2" class="step">
+          <Client v-on:backStep="backStep" v-on:nextStep="nextStep" />
+        </div>
+      </transition>
+
+      <transition name="slide-fade">
+        <div v-show="step === 3" class="step">
+          <Direction v-on:backStep="backStep" v-on:nextStep="nextStep" />
+        </div>
+      </transition>
+
+      <transition name="slide-fade">
+        <div v-show="step === 4" class="step">
+          <Passport v-on:backStep="backStep" v-on:nextStep="nextStep" />
+        </div>
+      </transition>
+    </form>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Name from "./components/Name";
+import Client from "./components/Client";
+import Direction from "./components/Direction";
+import Passport from "./components/Passport.vue";
 export default {
-  name: "App",
+  name: "app",
   components: {
-    HelloWorld,
+    Name,
+    Client,
+    Direction,
+    Passport,
   },
   data() {
     return {
-      todos: [
-        { id: 1, name: "Tim", lastName: "Borisyuk" },
-        { id: 2, name: "123", lastName: "Borisyuk" },
-        { id: 3, name: "321", lastName: "Borisyuk" },
-      ],
-      active: "abcd",
-      bind: "bind",
-      text: true,
+      step: 1,
     };
   },
   methods: {
-    showText() {
-      this.text = !this.text;
+    nextStep() {
+      this.step++;
     },
-  },
-  computed: {
-    textReverse() {
-      return this.active
-        .split("")
-        .reverse()
-        .join("");
-    },
-  },
-  watch: {
-    text() {
-      console.log("text изменился");
+    backStep() {
+      this.step--;
     },
   },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  max-width: 1000px;
-  height: 600px;
+<style lang="scss">
+.slide-fade-enter-active {
+  transition: all 0.5s ease;
 }
-img {
-  /* display: block; */
-  max-width: 100%;
-}
-.bind {
-  color: red;
-}
-.feter {
-  color: green;
+.slide-fade-enter {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

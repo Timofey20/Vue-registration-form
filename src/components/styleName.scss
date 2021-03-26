@@ -1,0 +1,176 @@
+@mixin font($weight, $size) {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: $weight;
+  font-size: $size + px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+form {
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+.form-group--error > input {
+  border: 1px solid red;
+}
+.container {
+  max-width: 320px;
+  padding: 0px 10px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.form {
+  margin-top: 30px;
+}
+.form__first {
+  @include font(500, 16);
+  margin-left: 10px;
+}
+.form__placeInput {
+  display: block;
+  width: 100%;
+  margin: 10px 0 0px 0px;
+  padding: 10px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  transition: 0.2s background-color;
+  @include font(500, 16);
+  cursor: pointer;
+  &:hover {
+    background-color: rgba($color: #666, $alpha: 0.1);
+  }
+  &:focus {
+    outline: none;
+    background: #ffe0a6;
+  }
+}
+.birthday__input {
+  margin-top: 0px;
+  & > input {
+    width: 100%;
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
+.gender {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.form_radio input[type="radio"] {
+  display: none;
+}
+.form_radio label {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0px 15px;
+  line-height: 34px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  user-select: none;
+}
+
+.form_radio input[type="radio"]:checked + label {
+  background: #ffe0a6;
+}
+
+.form_radio label:hover {
+  color: #666;
+}
+
+.form_radio input[type="radio"]:disabled + label {
+  background: white;
+  color: #666;
+}
+.btn {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 10px;
+  border: none;
+  background-color: #3f51b5;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  margin-top: 30px;
+  width: 100%;
+  font: 400 16px Arial;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    box-shadow: 0px 3px 5px rgba($color: #666, $alpha: 0.5);
+  }
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.button-back {
+  max-width: 120px;
+  background-color: white;
+  border: 1px solid #999;
+  color: black;
+}
+.button-head {
+  max-width: 150px;
+}
+.sel {
+  margin-top: 10px;
+  @include font(500, 16);
+  border-radius: 10px;
+  width: 100%;
+  overflow: hidden;
+  & option {
+    @include font(500, 16);
+    padding: 0.3rem;
+    padding-left: 0.5rem;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+.doctor,
+.documents {
+  padding: 10px;
+}
+.street__town,
+.series__number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.street {
+  max-width: 60%;
+}
+.house {
+  max-width: 30%;
+}
+.series {
+  max-width: 30%;
+}
+.passportNumber {
+  max-width: 60%;
+}
+.error {
+  margin-top: 5px;
+  color: red;
+  margin-left: 5px;
+  @include font(400, 12);
+}
+.necessarily {
+  color: red;
+  font-weight: 900;
+  margin-left: 2px;
+}
